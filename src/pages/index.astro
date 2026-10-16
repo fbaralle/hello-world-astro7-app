@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import WebflowLogo from '../components/WebflowLogo.astro';
 import DocCard from '../components/DocCard.astro';
+import { greeting } from '@lib/greeting';
 import '../styles/global.css';
 
 const FRAMEWORK = 'Astro 7';
@@ -48,6 +49,10 @@ const DOC_LINKS = [
     <main class="wf-main">
       <section class="wf-hero">
         <p class="wf-eyebrow">Hello, world · {FRAMEWORK}</p>
+        <!-- CLOUD-953 probe: value comes from a module resolved via the custom
+             `@lib` vite alias. Renders "alias-survived" only if the builder kept
+             the user's vite.resolve.alias. -->
+        <p data-testid="alias-probe">{greeting}</p>
         <h1 class="wf-title">
           Your <span class="wf-gradient">{FRAMEWORK}</span> app<br />
           is live on Webflow Cloud.
